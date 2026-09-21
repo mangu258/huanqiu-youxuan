@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>环球优选 - 跨境商城</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --ink: #1a1a2e;
+  --muted: #6b7280;
+  --accent: #e11d48;
+  --accent-weak: color-mix(in oklab, var(--accent) 8%, var(--surface));
+  --primary: #1e3a5f;
+  --primary-weak: color-mix(in oklab, var(--primary) 8%, var(--surface));
+  --line: color-mix(in oklab, var(--ink) 8%, transparent);
+  --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px -10px rgba(0,0,0,0.12);
+  --shadow-hover: 0 4px 12px rgba(0,0,0,0.06), 0 16px 40px -12px rgba(0,0,0,0.18);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --step--1: clamp(0.875rem, 0.85rem + 0.15vw, 0.9375rem);
+  --step-0: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --step-1: clamp(1.125rem, 1.05rem + 0.4vw, 1.35rem);
+  --step-2: clamp(1.5rem, 1.3rem + 1vw, 2.25rem);
+  --step-3: clamp(2.2rem, 1.8rem + 2vw, 3.5rem);
+  --step-4: clamp(2.8rem, 2.2rem + 3vw, 5rem);
+  --space: clamp(1rem, 0.8rem + 1vw, 1.5rem);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Noto Sans SC", "Noto Sans JP", "Noto Sans KR", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: var(--step-0);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+body[lang="ja"] { font-family: "Noto Sans JP", "Noto Sans SC", "Noto Sans KR", "Inter", sans-serif; }
+body[lang="ko"] { font-family: "Noto Sans KR", "Noto Sans SC", "Noto Sans JP", "Inter", sans-serif; }
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+/* Header */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--line);
+}
+
+.header-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--space);
+  height: 72px;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.logo {
+  font-size: var(--step-1);
+  font-weight: 700;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.logo-icon {
+  width: 36px; height: 36px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 10px;
+  display: grid; place-items: center;
+  color: #fff; font-weight: 700; font-size: 1rem;
+}
+
+.nav {
+  display: flex;
+  gap: 2rem;
+  flex: 1;
+}
+
+.nav a {
+  font-size: var(--step--1);
+  font-weight: 500;
+  color: var(--muted);
+  transition: color 0.2s;
+  position: relative;
+}
+
+.nav a:hover, .nav a.active { color: var(--ink); }
+
+.nav a.active::after {
+  content: "";
+  position: absolute;
+  bottom: -4px; left: 0; right: 0;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.search-box {
+  position: relative;
+}
+
+.search-box input {
+  width: 220px;
+  padding: 10px 14px 10px 38px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  font-size: var(--step--1);
+  font-family: inherit;
+  outline: none;
+  transition: width 0.3s, border-color 0.2s;
+}
+
+.search-box input:focus {
+  width: 280px;
+  border-color: var(--primary);
+}
+
+.search-box svg {
+  position: absolute;
+  left: 12px; top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+}
+
+.lang-switcher {
+  position: relative;
+}
+
+.lang-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  font-size: var(--step--1);
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+
+.lang-btn:hover { border-color: var(--primary); }
+
+.lang-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-hover);
+  min-width: 140px;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: all 0.2s;
+}
+
+.lang-switcher.open .lang-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.lang-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  font-size: var(--step--1);
+  cursor: pointer;
+  transition: background 0.15s;
+  border: none;
+  width: 100%;
+  background: none;
+  font-family: inherit;
+  text-align: left;
+}
+
+.lang-option:hover { background: var(--primary-weak); }
+
+.lang-option.active { color: var(--primary); font-weight: 600; }
+
+.flag { font-size: 1.1em; }
+
+.cart-btn {
+  position: relative;
+  padding: 10px;
+  border: none;
+  background: var(--primary);
+  color: #fff;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: grid; place-items: center;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.cart-btn:hover { background: #152d4a; transform: translateY(-1px); }
+
+.cart-count {
+  position: absolute;
+  top: -4px; right: -4px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  border: 2px solid var(--surface);
+}
+
+/* Hero */
+.hero {
+  position: relative;
+  background: linear-gradient(120deg, var(--primary) 0%, #2d4a6f 50%, var(--primary) 100%);
+  color: #fff;
+  overflow: hidden;
+}
+
+.hero-pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.06;
+  background-image:
+    radial-gradient(circle at 20% 80%, #fff 0, transparent 60%),
+    radial-gradient(circle at 80% 20%, #fff 0, transparent 50%);
+}
+
+.hero-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: calc(var(--space) * 4) var(--space);
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.18);
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: var(--step--1);
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  backdrop-filter: blur(8px);
+}
+
+.hero h1 {
+  font-size: var(--step-4);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.25rem;
+}
+
+.hero p {
+  font-size: var(--step-1);
+  opacity: 0.85;
+  line-height: 1.7;
+  max-width: 480px;
+  margin-bottom: 2rem;
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  background: var(--accent);
+  color: #fff;
+  font-size: var(--step-0);
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.hero-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(225,29,72,0.35);
+}
+
+.hero-visual {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  transform: rotate(3deg);
+}
+
+.hero-card {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  backdrop-filter: blur(12px);
+  transition: transform 0.3s;
+}
+
+.hero-card:nth-child(2) { transform: translateY(2rem); }
+
+.hero-card-icon {
+  width: 48px; height: 48px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 12px;
+  display: grid; place-items: center;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.hero-card h3 {
+  font-size: var(--step-0);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.hero-card p {
+  font-size: var(--step--1);
+  opacity: 0.7;
+  margin: 0;
+}
+
+/* Section */
+.section {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: calc(var(--space) * 3) var(--space);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  font-size: var(--step-2);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.section-sub {
+  color: var(--muted);
+  font-size: var(--step--1);
+  margin-top: 0.25rem;
+}
+
+.section-more {
+  font-size: var(--step--1);
+  font-weight: 600;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: gap 0.2s;
+}
+
+.section-more:hover { gap: 10px; }
+
+/* Categories */
+.categories {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1rem;
+}
+
+.category {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.5rem 1rem;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  cursor: pointer;
+}
+
+.category:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--primary);
+}
+
+.category-icon {
+  width: 56px; height: 56px;
+  background: var(--primary-weak);
+  border-radius: var(--radius-sm);
+  display: grid; place-items: center;
+  margin: 0 auto 1rem;
+  font-size: 1.5rem;
+}
+
+.category h4 {
+  font-size: var(--step--1);
+  font-weight: 600;
+}
+
+/* Products */
+.products {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.product {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.product:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+
+.product-img {
+  aspect-ratio: 1;
+  background: linear-gradient(135deg, var(--bg), #e8eaed);
+  display: grid; place-items: center;
+  font-size: 3rem;
+  position: relative;
+}
+
+.product-tag {
+  position: absolute;
+  top: 12px; left: 12px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 100px;
+  text-transform: uppercase;
+}
+
+.product-info { padding: 1.25rem; }
+
+.product-brand {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.product-name {
+  font-size: var(--step--1);
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 0.75rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.product-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.product-price {
+  font-size: var(--step-1);
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.product-origin {
+  font-size: 0.75rem;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.add-cart {
+  width: 36px; height: 36px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 10px;
+  display: grid; place-items: center;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  color: var(--ink);
+}
+
+.add-cart:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+/* Features */
+.features {
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.features-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: calc(var(--space) * 2) var(--space);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.feature {
+  text-align: center;
+  padding: 1rem;
+}
+
+.feature-icon {
+  width: 64px; height: 64px;
+  background: var(--primary-weak);
+  border-radius: 50%;
+  display: grid; place-items: center;
+  margin: 0 auto 1rem;
+  font-size: 1.75rem;
+}
+
+.feature h4 {
+  font-size: var(--step-0);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.feature p {
+  font-size: var(--step--1);
+  color: var(--muted);
+}
+
+/* Banner */
+.banner {
+  max-width: 1280px;
+  margin: 0 auto calc(var(--space) * 3);
+  padding: 0 var(--space);
+}
+
+.banner-inner {
+  background: linear-gradient(100deg, var(--primary-weak), var(--accent-weak));
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: calc(var(--space) * 2);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 2rem;
+}
+
+.banner h3 {
+  font-size: var(--step-2);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.banner p {
+  color: var(--muted);
+  font-size: var(--step-0);
+}
+
+.banner-btn {
+  padding: 12px 28px;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: var(--step--1);
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.banner-btn:hover { background: var(--ink); }
+
+/* Footer */
+.footer {
+  background: var(--ink);
+  color: #a1a1aa;
+  font-size: var(--step--1);
+}
+
+.footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: calc(var(--space) * 3) var(--space) calc(var(--space) * 1.5);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr repeat(3, 1fr);
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.footer-brand {
+  color: #fff;
+  font-size: var(--step-1);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-desc {
+  line-height: 1.8;
+  max-width: 280px;
+}
+
+.footer-col h5 {
+  color: #fff;
+  font-size: var(--step--1);
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.footer-col a {
+  display: block;
+  padding: 6px 0;
+  transition: color 0.2s;
+}
+
+.footer-col a:hover { color: #fff; }
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-payments {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.payment-badge {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Mobile menu */
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .products { grid-template-columns: repeat(3, 1fr); }
+  .categories { grid-template-columns: repeat(3, 1fr); }
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-visual { display: none; }
+}
+
+@media (max-width: 768px) {
+  .header-inner { height: 64px; gap: 1rem; }
+  .nav { display: none; }
+  .mobile-menu-btn { display: block; }
+  .search-box input { width: 140px; }
+  .search-box input:focus { width: 160px; }
+  .products { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .categories { grid-template-columns: repeat(2, 1fr); }
+  .features-inner { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .banner-inner { grid-template-columns: 1fr; text-align: center; }
+  .hero h1 { font-size: var(--step-3); }
+}
+
+@media (max-width: 480px) {
+  .products { grid-template-columns: 1fr; }
+  .features-inner { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Utility */
+.hidden { display: none !important; }
+</style>
+</head>
+<body lang="zh">
+
+<header class="header">
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon">G</div>
+      <span data-i18n="brand">环球优选</span>
+    </a>
+
+    <nav class="nav">
+      <a href="#home" class="active" data-i18n="nav_home">首页</a>
+      <a href="#categories" data-i18n="nav_categories">分类</a>
+      <a href="#products" data-i18n="nav_products">热销商品</a>
+      <a href="#deals" data-i18n="nav_deals">优惠活动</a>
+    </nav>
+
+    <div class="header-actions">
+      <div class="search-box">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" data-i18n-placeholder="search_placeholder" placeholder="搜索商品...">
+      </div>
+
+      <div class="lang-switcher" id="langSwitcher">
+        <button class="lang-btn" onclick="toggleLang()">
+          <span class="flag" id="currentFlag">🇨🇳</span>
+          <span id="currentLang">中文</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="lang-dropdown">
+          <button class="lang-option active" onclick="setLang('zh')" data-lang="zh">
+            <span class="flag">🇨🇳</span> 中文
+          </button>
+          <button class="lang-option" onclick="setLang('ja')" data-lang="ja">
+            <span class="flag">🇯🇵</span> 日本語
+          </button>
+          <button class="lang-option" onclick="setLang('ko')" data-lang="ko">
+            <span class="flag">🇰🇷</span> 한국어
+          </button>
+        </div>
+      </div>
+
+      <button class="cart-btn" aria-label="购物车">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="cart-count">3</span>
+      </button>
+
+      <button class="mobile-menu-btn" aria-label="菜单">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div class="hero-pattern"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m2 12 20 0"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span data-i18n="hero_badge">覆盖中日韩 · 正品直邮</span>
+      </div>
+      <h1 data-i18n="hero_title">发现全球好物<br>一站购齐</h1>
+      <p data-i18n="hero_desc">精选中日韩优质商品，跨境直邮到家。正品保障，多语言客服，让海外购物像本地一样简单。</p>
+      <a href="#products" class="hero-cta">
+        <span data-i18n="hero_cta">立即选购</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="hero-card-icon">📦</div>
+        <h3 data-i18n="hero_card1_title">极速物流</h3>
+        <p data-i18n="hero_card1_desc">3-7天跨境送达</p>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-icon">🛡️</div>
+        <h3 data-i18n="hero_card2_title">正品保障</h3>
+        <p data-i18n="hero_card2_desc">100%官方授权</p>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-icon">💬</div>
+        <h3 data-i18n="hero_card3_title">多语客服</h3>
+        <p data-i18n="hero_card3_desc">中日韩三语支持</p>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-icon">💰</div>
+        <h3 data-i18n="hero_card4_title">优惠价格</h3>
+        <p data-i18n="hero_card4_desc">免税+折扣</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="categories">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title" data-i18n="cat_title">热门分类</h2>
+      <p class="section-sub" data-i18n="cat_sub">探索最受欢迎的购物类别</p>
+    </div>
+    <a href="#" class="section-more">
+      <span data-i18n="view_all">查看全部</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+    </a>
+  </div>
+  <div class="categories">
+    <div class="category">
+      <div class="category-icon">💄</div>
+      <h4 data-i18n="cat_beauty">美妆护肤</h4>
+    </div>
+    <div class="category">
+      <div class="category-icon">👕</div>
+      <h4 data-i18n="cat_fashion">时尚服饰</h4>
+    </div>
+    <div class="category">
+      <div class="category-icon">🏠</div>
+      <h4 data-i18n="cat_home">家居生活</h4>
+    </div>
+    <div class="category">
+      <div class="category-icon">📱</div>
+      <h4 data-i18n="cat_electronics">数码电子</h4>
+    </div>
+    <div class="category">
+      <div class="category-icon">🍵</div>
+      <h4 data-i18n="cat_food">食品保健</h4>
+    </div>
+    <div class="category">
+      <div class="category-icon">👶</div>
+      <h4 data-i18n="cat_kids">母婴用品</h4>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="products">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title" data-i18n="products_title">热销商品</h2>
+      <p class="section-sub" data-i18n="products_sub">本周最受欢迎的跨境好物</p>
+    </div>
+    <a href="#" class="section-more">
+      <span data-i18n="view_all">查看全部</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+    </a>
+  </div>
+  <div class="products">
+    <div class="product">
+      <div class="product-img">
+        <span>🧴</span>
+        <span class="product-tag" data-i18n="tag_hot">热销</span>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">SK-II</div>
+        <div class="product-name" data-i18n="p1_name">护肤精华露 神仙水 230ml</div>
+        <div class="product-meta">
+          <div>
+            <div class="product-price">¥1,299</div>
+            <div class="product-origin"><span class="flag">🇯🇵</span> <span data-i18n="from_jp">日本直邮</span></div>
+          </div>
+          <button class="add-cart" aria-label="加入购物车">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product">
+      <div class="product-img">
+        <span>💊</span>
+        <span class="product-tag" data-i18n="tag_new">新品</span>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">正官庄</div>
+        <div class="product-name" data-i18n="p2_name">高丽参精丸 168g</div>
+        <div class="product-meta">
+          <div>
+            <div class="product-price">¥568</div>
+            <div class="product-origin"><span class="flag">🇰🇷</span> <span data-i18n="from_kr">韩国直邮</span></div>
+          </div>
+          <button class="add-cart" aria-label="加入购物车">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product">
+      <div class="product-img">
+        <span>🍵</span>
+        <span class="product-tag" data-i18n="tag_sale">特惠</span>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">伊藤园</div>
+        <div class="product-name" data-i18n="p3_name">抹茶粉 优质宇治 100g</div>
+        <div class="product-meta">
+          <div>
+            <div class="product-price">¥89</div>
+            <div class="product-origin"><span class="flag">🇯🇵</span> <span data-i18n="from_jp">日本直邮</span></div>
+          </div>
+          <button class="add-cart" aria-label="加入购物车">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product">
+      <div class="product-img">
+        <span>🎧</span>
+        <span class="product-tag" data-i18n="tag_hot">热销</span>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">Sony</div>
+        <div class="product-name" data-i18n="p4_name">WH-1000XM5 降噪耳机</div>
+        <div class="product-meta">
+          <div>
+            <div class="product-price">¥2,199</div>
+            <div class="product-origin"><span class="flag">🇯🇵</span> <span data-i18n="from_jp">日本直邮</span></div>
+          </div>
+          <button class="add-cart" aria-label="加入购物车">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product">
+      <div class="product-img">
+        <span>👜</span>
+        <span class="product-tag" data-i18n="tag_new">新品</span>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">MCM</div>
+        <div class="product-name" data-i18n="p5_name">Stark Visetos 双肩背包</div>
+        <div class="product-meta">
+          <div>
+            <div class="product-price">¥4,599</div>
+            <div class="product-origin"><span class="flag">🇰🇷</span> <span data-i18n="from_kr">韩国直邮</span></div>
+          </div>
+          <button class="add-cart" aria-label="加入购物车">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product">
+      <div class="product-img">
+        <span>🧸</span>
+        <span class="product-tag" data-i18n="tag_hot">热销</span>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">Line Friends</div>
+        <div class="product-name" data-i18n="p6_name">BT21 毛绒玩偶套装</div>
+        <div class="product-meta">
+          <div>
+            <div class="product-price">¥329</div>
+            <div class="product-origin"><span class="flag">🇰🇷</span> <span data-i18n="from_kr">韩国直邮</span></div>
+          </div>
+          <button class="add-cart" aria-label="加入购物车">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product">
+      <div class="product-img">
+        <span>🍜</span>
+        <span class="product-tag" data-i18n="tag_sale">特惠</span>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">日清</div>
+        <div class="product-name" data-i18n="p7_name">出前一丁 麻油面 12袋装</div>
+        <div class="product-meta">
+          <div>
+            <div class="product-price">¥65</div>
+            <div class="product-origin"><span class="flag">🇯🇵</span> <span data-i18n="from_jp">日本直邮</span></div>
+          </div>
+          <button class="add-cart" aria-label="加入购物车">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product">
+      <div class="product-img">
+        <span>🖊️</span>
+        <span class="product-tag" data-i18n="tag_new">新品</span>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">LAMY</div>
+        <div class="product-name" data-i18n="p8_name">狩猎者系列 钢笔 F尖</div>
+        <div class="product-meta">
+          <div>
+            <div class="product-price">¥198</div>
+            <div class="product-origin"><span class="flag">🇨🇳</span> <span data-i18n="from_cn">国内发货</span></div>
+          </div>
+          <button class="add-cart" aria-label="加入购物车">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="banner" id="deals">
+  <div class="banner-inner">
+    <div>
+      <h3 data-i18n="banner_title">新用户首单立减 ¥100</h3>
+      <p data-i18n="banner_desc">注册即享新人礼包，全场满 ¥299 包邮</p>
+    </div>
+    <button class="banner-btn" data-i18n="banner_btn">立即领取</button>
+  </div>
+</div>
+
+<section class="features">
+  <div class="features-inner">
+    <div class="feature">
+      <div class="feature-icon">🚚</div>
+      <h4 data-i18n="feat1_title">全球直邮</h4>
+      <p data-i18n="feat1_desc">中日韩三地仓库，极速发货</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">✅</div>
+      <h4 data-i18n="feat2_title">正品保证</h4>
+      <p data-i18n="feat2_desc">官方授权，假一赔十</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🔄</div>
+      <h4 data-i18n="feat3_title">无忧退换</h4>
+      <p data-i18n="feat3_desc">7天无理由退换货</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🔒</div>
+      <h4 data-i18n="feat4_title">安全支付</h4>
+      <p data-i18n="feat4_desc">多种支付方式，安全加密</p>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <div class="logo-icon" style="width:28px;height:28px;font-size:0.8rem;">G</div>
+          <span data-i18n="brand">环球优选</span>
+        </div>
+        <p class="footer-desc" data-i18n="footer_desc">连接中日韩三地优质商品，为您提供便捷、安全、快速的跨境购物体验。</p>
+      </div>
+      <div class="footer-col">
+        <h5 data-i18n="footer_shop">购物</h5>
+        <a href="#" data-i18n="footer_new">新品上市</a>
+        <a href="#" data-i18n="footer_hot">热销排行</a>
+        <a href="#" data-i18n="footer_sale">折扣专区</a>
+        <a href="#" data-i18n="footer_brands">品牌馆</a>
+      </div>
+      <div class="footer-col">
+        <h5 data-i18n="footer_help">帮助</h5>
+        <a href="#" data-i18n="footer_shipping">配送说明</a>
+        <a href="#" data-i18n="footer_return">退换政策</a>
+        <a href="#" data-i18n="footer_tax">税费说明</a>
+        <a href="#" data-i18n="footer_contact">联系我们</a>
+      </div>
+      <div class="footer-col">
+        <h5 data-i18n="footer_about">关于</h5>
+        <a href="#" data-i18n="footer_company">公司简介</a>
+        <a href="#" data-i18n="footer_terms">使用条款</a>
+        <a href="#" data-i18n="footer_privacy">隐私政策</a>
+        <a href="#" data-i18n="footer_careers">加入我们</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span data-i18n="footer_copy">© 2025 环球优选. 保留所有权利.</span>
+      <div class="footer-payments">
+        <span class="payment-badge">支付宝</span>
+        <span class="payment-badge">微信支付</span>
+        <span class="payment-badge">银联</span>
+        <span class="payment-badge">Visa</span>
+        <span class="payment-badge">Mastercard</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const i18n = {
+  zh: {
+    brand: "环球优选",
+    nav_home: "首页", nav_categories: "分类", nav_products: "热销商品", nav_deals: "优惠活动",
+    search_placeholder: "搜索商品...",
+    hero_badge: "覆盖中日韩 · 正品直邮",
+    hero_title: "发现全球好物<br>一站购齐",
+    hero_desc: "精选中日韩优质商品，跨境直邮到家。正品保障，多语言客服，让海外购物像本地一样简单。",
+    hero_cta: "立即选购",
+    hero_card1_title: "极速物流", hero_card1_desc: "3-7天跨境送达",
+    hero_card2_title: "正品保障", hero_card2_desc: "100%官方授权",
+    hero_card3_title: "多语客服", hero_card3_desc: "中日韩三语支持",
+    hero_card4_title: "优惠价格", hero_card4_desc: "免税+折扣",
+    cat_title: "热门分类", cat_sub: "探索最受欢迎的购物类别",
+    view_all: "查看全部",
+    cat_beauty: "美妆护肤", cat_fashion: "时尚服饰", cat_home: "家居生活",
+    cat_electronics: "数码电子", cat_food: "食品保健", cat_kids: "母婴用品",
+    products_title: "热销商品", products_sub: "本周最受欢迎的跨境好物",
+    tag_hot: "热销", tag_new: "新品", tag_sale: "特惠",
+    p1_name: "护肤精华露 神仙水 230ml",
+    p2_name: "高丽参精丸 168g",
+    p3_name: "抹茶粉 优质宇治 100g",
+    p4_name: "WH-1000XM5 降噪耳机",
+    p5_name: "Stark Visetos 双肩背包",
+    p6_name: "BT21 毛绒玩偶套装",
+    p7_name: "出前一丁 麻油面 12袋装",
+    p8_name: "狩猎者系列 钢笔 F尖",
+    from_jp: "日本直邮", from_kr: "韩国直邮", from_cn: "国内发货",
+    banner_title: "新用户首单立减 ¥100",
+    banner_desc: "注册即享新人礼包，全场满 ¥299 包邮",
+    banner_btn: "立即领取",
+    feat1_title: "全球直邮", feat1_desc: "中日韩三地仓库，极速发货",
+    feat2_title: "正品保证", feat2_desc: "官方授权，假一赔十",
+    feat3_title: "无忧退换", feat3_desc: "7天无理由退换货",
+    feat4_title: "安全支付", feat4_desc: "多种支付方式，安全加密",
+    footer_desc: "连接中日韩三地优质商品，为您提供便捷、安全、快速的跨境购物体验。",
+    footer_shop: "购物", footer_new: "新品上市", footer_hot: "热销排行", footer_sale: "折扣专区", footer_brands: "品牌馆",
+    footer_help: "帮助", footer_shipping: "配送说明", footer_return: "退换政策", footer_tax: "税费说明", footer_contact: "联系我们",
+    footer_about: "关于", footer_company: "公司简介", footer_terms: "使用条款", footer_privacy: "隐私政策", footer_careers: "加入我们",
+    footer_copy: "© 2025 环球优选. 保留所有权利."
+  },
+  ja: {
+    brand: "環球優選",
+    nav_home: "ホーム", nav_categories: "カテゴリー", nav_products: "人気商品", nav_deals: "お得情報",
+    search_placeholder: "商品を検索...",
+    hero_badge: "中・日・韓対応 · 正規直送",
+    hero_title: "世界中の良いものを<br>一つの場所で",
+    hero_desc: "中・日・韓の厳選商品を、国境を越えてお届け。正規品保証、多言語カスタマーサポートで、海外通販をもっと簡単に。",
+    hero_cta: "今すぐ購入",
+    hero_card1_title: "速達物流", hero_card1_desc: "3〜7日で国境配送",
+    hero_card2_title: "正規保証", hero_card2_desc: "100%公式ライセンス",
+    hero_card3_title: "多言語対応", hero_card3_desc: "中・日・韓3カ国語対応",
+    hero_card4_title: "お得な価格", hero_card4_desc: "免税＋割引",
+    cat_title: "人気カテゴリー", cat_sub: "人気のショッピングカテゴリーを探索",
+    view_all: "すべて見る",
+    cat_beauty: "美容・スキンケア", cat_fashion: "ファッション", cat_home: "暮らし・インテリア",
+    cat_electronics: "デジタル・家電", cat_food: "食品・健康", cat_kids: "ベビー・子供用品",
+    products_title: "人気商品", products_sub: "今週の人気跨境アイテム",
+    tag_hot: "人気", tag_new: "新着", tag_sale: "特価",
+    p1_name: "フェイシャル トリートメント エッセンス 230ml",
+    p2_name: "高麗人参精丸 168g",
+    p3_name: "抹茶パウダー 優質宇治 100g",
+    p4_name: "WH-1000XM5 ノイズキャンセリングヘッドホン",
+    p5_name: "Stark Visetos バックパック",
+    p6_name: "BT21 ぬいぐるみセット",
+    p7_name: "出前一丁 ごま油風味 12袋セット",
+    p8_name: "サファリ 万年筆 F字",
+    from_jp: "日本直送", from_kr: "韓国直送", from_cn: "国内発送",
+    banner_title: "新規会員 初回¥100 OFF",
+    banner_desc: "登録で新人ギフト、¥299以上で送料無料",
+    banner_btn: "今すぐ受取",
+    feat1_title: "グローバル直送", feat1_desc: "中・日・韓3拠点、迅速発送",
+    feat2_title: "正規品保証", feat2_desc: "公式ライセンス、仮物10倍返金",
+    feat3_title: "安心返品", feat3_desc: "7日間理由なし返品OK",
+    feat4_title: "安全決済", feat4_desc: "複数決済方式、安全暗号化",
+    footer_desc: "中・日・韓の良質な商品をつなぎ、便利で安全・迅速な跨境ショッピング体験を提供します。",
+    footer_shop: "ショッピング", footer_new: "新発売", footer_hot: "人気ランキング", footer_sale: "セール", footer_brands: "ブランド館",
+    footer_help: "ヘルプ", footer_shipping: "配送ガイド", footer_return: "返品ポリシー", footer_tax: "税関・関税", footer_contact: "お問い合わせ",
+    footer_about: "会社概要", footer_company: "企業情報", footer_terms: "利用規約", footer_privacy: "プライバシー", footer_careers: "採用情報",
+    footer_copy: "© 2025 環球優選. All rights reserved."
+  },
+  ko: {
+    brand: "환구우선",
+    nav_home: "홈", nav_categories: "카테고리", nav_products: "인기상품", nav_deals: "특가정보",
+    search_placeholder: "상품 검색...",
+    hero_badge: "중·일·한 지원 · 정품직송",
+    hero_title: "전 세계 좋은 것을<br>한 곳에서",
+    hero_desc: "중·일·한의 엄선된 상품을 국경을 넘어 배송합니다. 정품 보장, 다국어 고객지원으로 해외쇼핑을 더 쉽게.",
+    hero_cta: "지금 쇼핑하기",
+    hero_card1_title: "초고속 물류", hero_card1_desc: "3-7일 국경 배송",
+    hero_card2_title: "정품 보장", hero_card2_desc: "100% 공식 라이선스",
+    hero_card3_title: "다국어 지원", hero_card3_desc: "중·일·한 3국어 지원",
+    hero_card4_title: "특별 가격", hero_card4_desc: "면세+할인",
+    cat_title: "인기 카테고리", cat_sub: "가장 인기 있는 쇼핑 카테고리 탐색",
+    view_all: "전체 보기",
+    cat_beauty: "뷰티·스킨케어", cat_fashion: "패션", cat_home: "홈·리빙",
+    cat_electronics: "디지털·가전", cat_food: "식품·건강", cat_kids: "유아·아동용품",
+    products_title: "인기상품", products_sub: "이번 주 가장 인기 있는 해외 직구 상품",
+    tag_hot: "인기", tag_new: "신상", tag_sale: "특가",
+    p1_name: "페이셜 트리트먼트 에센스 230ml",
+    p2_name: "고려 인삼 정환 168g",
+    p3_name: "말차 파우더 프리미엄 우지 100g",
+    p4_name: "WH-1000XM5 노이즈캔슬링 헤드폰",
+    p5_name: "Stark Visetos 백팩",
+    p6_name: "BT21 인형 세트",
+    p7_name: "출전일정 참기름라면 12개 세트",
+    p8_name: "사파리 만년필 F촉",
+    from_jp: "일본직송", from_kr: "한국직송", from_cn: "국내발송",
+    banner_title: "신규회원 첫 주문 ¥100 할인",
+    banner_desc: "가입 즉시 신규 웰컴키트, ¥299 이상 무료배송",
+    banner_btn: "지금 받기",
+    feat1_title: "글로벌직송", feat1_desc: "중·일·한 3개 물류센터, 신속발송",
+    feat2_title: "정품보장", feat2_desc: "공식 라이선스, 위조시 10배 보상",
+    feat3_title: "무료반품", feat3_desc: "7일 무조건 반품 가능",
+    feat4_title: "안전결제", feat4_desc: "다양한 결제방식, 안전암호화",
+    footer_desc: "중·일·한의 우수한 상품을 연결하여 편리하고 안전·신속한 해외직구 경험을 제공합니다.",
+    footer_shop: "쇼핑", footer_new: "신상품", footer_hot: "인기순위", footer_sale: "할인존", footer_brands: "브랜드관",
+    footer_help: "고객지원", footer_shipping: "배송안내", footer_return: "반품정책", footer_tax: "세금안내", footer_contact: "문의하기",
+    footer_about: "회사소개", footer_company: "기업정보", footer_terms: "이용약관", footer_privacy: "개인정보", footer_careers: "채용정보",
+    footer_copy: "© 2025 환구우선. All rights reserved."
+  }
+};
+
+function setLang(lang) {
+  document.body.setAttribute('lang', lang);
+  const t = i18n[lang];
+
+  // Update text content
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key]) el.innerHTML = t[key];
+  });
+
+  // Update placeholders
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (t[key]) el.placeholder = t[key];
+  });
+
+  // Update lang switcher UI
+  document.querySelectorAll('.lang-option').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+
+  const flagMap = { zh: '🇨🇳', ja: '🇯🇵', ko: '🇰🇷' };
+  const nameMap = { zh: '中文', ja: '日本語', ko: '한국어' };
+  document.getElementById('currentFlag').textContent = flagMap[lang];
+  document.getElementById('currentLang').textContent = nameMap[lang];
+
+  document.getElementById('langSwitcher').classList.remove('open');
+}
+
+function toggleLang() {
+  document.getElementById('langSwitcher').classList.toggle('open');
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.lang-switcher')) {
+    document.getElementById('langSwitcher').classList.remove('open');
+  }
+});
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+  setLang('zh');
+});
+</script>
+
+</body>
+</html>
